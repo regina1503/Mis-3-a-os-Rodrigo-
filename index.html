@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mis 3 añitos, Rodrigo! 🚜🌾</title>
+    <!-- Tailwind CSS para diseño fluido y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para íconos infantiles y campestres -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti para la gran bienvenida -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts: Fredoka (Redondeada e Infantil) y Comfortaa -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            overflow: hidden;
+        }
+        .font-farm {
+            font-family: 'Comfortaa', cursive;
+        }
+        .snap-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            width: 100vw;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .snap-section {
+            scroll-snap-align: start;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% {
+                transform: translateY(-20vh) translateX(50px) rotate(20deg);
+                opacity: 0;
+            }
+        }
+        .floating-animal {
+            position: absolute;
+            bottom: -100px;
+            pointer-events: none;
+            z-index: 10;
+            animation: floatUp 12s infinite linear;
+        }
+
+        /* Pulsación sutil para las guías de scroll */
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+        .scroll-hint {
+            animation: bounceDown 2.2s infinite;
+        }
+
+        .bar {
+            width: 3px;
+            height: 12px;
+            background-color: #60a5fa; /* Azul pastel */
+            display: inline-block;
+            transform-origin: bottom;
+            animation: bounceBar 1.2s ease-in-out infinite alternate;
+        }
+        .bar:nth-child(2) { animation-delay: 0.15s; height: 18px; }
+        .bar:nth-child(3) { animation-delay: 0.3s; height: 9px; }
+        .bar:nth-child(4) { animation-delay: 0.45s; height: 14px; }
+
+        @keyframes bounceBar {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1.1); }
+        }
+        .paused-animation .bar {
+            animation-play-state: paused !important;
+            transform: scaleY(0.4) !important;
+        }
+
+        /* Fondo del cielo pastel de la granja con nubes */
+        .farm-sky-bg {
+            background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
+        }
+
+        /* Patrón de costura o mantel de picnic de granja celeste sutil */
+        .farm-pattern {
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#bae6fd 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-sky-50 select-none">
+
+    <div id="welcome-curtain" class="fixed inset-0 z-[100] farm-sky-bg flex flex-col justify-center items-center p-6 text-center transition-all duration-1000 ease-out">
+        <!-- Nubes animadas de fondo sutiles -->
+        <div class="absolute top-10 left-6 text-white text-4xl opacity-40"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-24 right-10 text-white text-5xl opacity-40"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute bottom-20 left-12 text-white text-5xl opacity-30"><i class="fa-solid fa-cloud"></i></div>
+
+        <!-- Tarjeta de invitación estilo tranquera de granja -->
+        <div class="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl max-w-sm w-full border-4 border-sky-200/60 farm-pattern transform scale-100 transition-transform duration-500 relative">
+            
+            <!-- Iconos de granja decorativos -->
+            <div class="flex justify-between items-center px-4 mb-4 text-sky-400">
+                <i class="fa-solid fa-wheat-awn text-2xl"></i>
+                <span class="text-4xl">🚜</span>
+                <i class="fa-solid fa-wheat-awn text-2xl"></i>
+            </div>
+            
+            <h1 class="text-3xl font-bold text-sky-700 mb-2 font-farm">¡BIENVENIDOS!</h1>
+            <p class="text-sky-600 font-semibold mb-6 text-xs uppercase tracking-wider">Acompaña al pequeño granjero en sus</p>
+            
+            <!-- Círculo central con edad -->
+            <div class="w-32 h-32 mx-auto bg-sky-100 rounded-full border-4 border-white shadow-md flex flex-col justify-center items-center mb-6">
+                <span class="text-5xl font-extrabold text-sky-500">3</span>
+                <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Añitos</span>
+            </div>
+
+            <div class="text-3xl font-extrabold text-blue-600 tracking-wide mb-6">
+                RODRIGO
+            </div>
+
+            <!-- Botón de apertura estilo madera celeste -->
+            <button onclick="openInvitation()" class="w-full bg-gradient-to-r from-sky-400 to-blue-400 text-white font-bold text-base py-4 px-6 rounded-2xl shadow-lg hover:from-sky-500 hover:to-blue-500 transition duration-300 transform active:scale-95 flex justify-center items-center gap-3 border-b-4 border-blue-500">
+                <span>🐣 ENTRAR A LA GRANJA</span>
+                <i class="fa-solid fa-tractor text-lg animate-pulse"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor para animalitos flotando en segundo plano -->
+    <div id="floating-container" class="absolute inset-0 pointer-events-none overflow-hidden z-20"></div>
+
+    <div class="snap-container" id="snap-container">
+        
+        <!-- SECCIÓN 1: BIENVENIDA / PORTADA -->
+        <section class="snap-section" style="background-image: url('https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/invi%201.jpeg');">
+            <!-- Capa de iluminación suave de cielo para legibilidad -->
+            <div class="absolute inset-0 bg-gradient-to-b from-sky-100/20 via-transparent to-transparent pointer-events-none"></div>
+
+            <!-- Indicador para deslizar abajo -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center text-white scroll-hint z-30 flex flex-col items-center pointer-events-none">
+                <span class="text-xs font-bold tracking-wider bg-sky-400/90 text-white px-4 py-2 rounded-full border border-sky-200/30 mb-1 shadow-md">
+                    Desliza para pasear 🔽
+                </span>
+                <i class="fa-solid fa-chevron-down text-base text-sky-400"></i>
+            </div>
+            
+            <!-- Audio oculto con música agradable de flauta / infantil country sutil -->
+            <audio id="bg-music" loop preload="auto">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+
+        <!-- SECCIÓN 2: DETALLES DE LA CELEBRACIÓN -->
+        <section class="snap-section" style="background-image: url('https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/invi%202.png');">
+            <!-- Capa sutil de iluminación -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-sky-100/10 pointer-events-none"></div>
+        </section>
+
+        <!-- SECCIÓN 3: UBICACIÓN Y CONFIRMACIÓN -->
+        <section class="snap-section flex flex-col justify-center items-center p-6 relative" style="background-image: url('https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/Invi%203.jpeg');">
+            <!-- Capa degradada azul/celeste muy suave para proteger legibilidad de botones -->
+            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-sky-950/20 to-transparent pointer-events-none"></div>
+
+            <div class="absolute inset-0 z-30 flex flex-col items-center pointer-events-none">
+                
+                <!-- BOTÓN 1: VER UBICACIÓN (Elevado de 32% a 15% y centrado de forma segura) -->
+                <div class="absolute w-full max-w-xs px-6 pointer-events-auto" style="top: 15%; left: 50%; transform: translateX(-50%);">
+                    <a href="https://maps.app.goo.gl/gPCQ4fAAQepzSCsB9" target="_blank" 
+                       class="w-full bg-gradient-to-r from-sky-500 to-blue-400 text-white text-center py-4 rounded-2xl font-bold text-sm shadow-lg hover:from-sky-600 hover:to-blue-500 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 border-b-4 border-sky-600">
+                        <i class="fa-solid fa-map-location-dot text-lg text-white animate-pulse"></i>
+                        <span>📍 VER UBICACIÓN</span>
+                    </a>
+                </div>
+                
+                <!-- BOTÓN 2: CONFIRMAR ASISTENCIA (Elevado al 50%, desplazado a la derecha y optimizado en ancho para no salirse) -->
+                <div class="absolute w-full max-w-[220px] px-2 pointer-events-auto" style="top: 50%; left: 70%; transform: translateX(-50%);">
+                    <a href="https://w.app/wxsdqo" target="_blank" 
+                       class="w-full bg-gradient-to-r from-blue-300 to-sky-400 text-white text-center py-3.5 rounded-2xl font-bold text-xs shadow-lg hover:from-blue-400 hover:to-sky-500 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 border-b-4 border-blue-400">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span class="whitespace-nowrap">CONFIRMAR ASISTENCIA</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="music-player" class="fixed bottom-6 right-6 z-50 pointer-events-auto hidden">
+        <button onclick="toggleMusic()" class="relative bg-gradient-to-r from-sky-400 to-blue-400 p-4 rounded-full text-white shadow-2xl transition hover:scale-105 active:scale-95 border-2 border-white flex items-center gap-3">
+            <!-- Visualizador interactivo de sonido -->
+            <div id="audio-visualizer" class="flex gap-0.5 items-end h-5 px-1 paused-animation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="bg-blue-500/30 p-1 rounded-full">
+                <!-- Icono musical de granja -->
+                <i id="music-control-icon" class="fa-solid fa-music text-white text-sm"></i>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        // Emojis de granja en tonos pasteles celestes y amigos campestres
+        const farmEmojis = ['🐮', '🐣', '🚜', '🐷', '🐑', '🎈', '☁️', '🌾', '🐥', '🎈'];
+
+        // Se generan las decoraciones flotantes automáticamente al iniciar
+        window.onload = function() {
+            generateFloatingItems();
+        }
+
+        // Generador de animalitos y tractores flotantes de la granja
+        function generateFloatingItems() {
+            const container = document.getElementById('floating-container');
+            const totalItems = 12; // Cantidad controlada para no interferir en móviles
+
+            for (let i = 0; i < totalItems; i++) {
+                const item = document.createElement('div');
+                item.className = 'floating-animal text-3xl md:text-4xl';
+                item.style.left = `${Math.random() * 90}%`;
+                item.style.animationDelay = `${Math.random() * 12}s`;
+                item.style.animationDuration = `${8 + Math.random() * 7}s`;
+                item.innerText = farmEmojis[Math.floor(Math.random() * farmEmojis.length)];
+                container.appendChild(item);
+            }
+        }
+
+        // Apertura de la Invitación interactiva
+        function openInvitation() {
+            const curtain = document.getElementById('welcome-curtain');
+            const musicPlayer = document.getElementById('music-player');
+            const audio = document.getElementById('bg-music');
+            
+            // Disparar confeti celeste, amarillo y blanco nube
+            confetti({
+                particleCount: 140,
+                spread: 70,
+                origin: { y: 0.65 },
+                colors: ['#38bdf8', '#bae6fd', '#fef08a', '#ffffff', '#a7f3d0']
+            });
+
+            // Reproducir música respetando la interacción del usuario
+            audio.play().then(() => {
+                document.getElementById('audio-visualizer').classList.remove('paused-animation');
+            }).catch(error => {
+                console.log("Interacción de audio asistida:", error);
+            });
+
+            // Animación de ocultar cortina
+            curtain.classList.add('opacity-0', 'pointer-events-none');
+            musicPlayer.classList.remove('hidden');
+
+            // Segundo destello de confeti en los costados
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#38bdf8', '#bae6fd', '#ffffff']
+                });
+                confetti({
+                    particleCount: 50,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#38bdf8', '#bae6fd', '#ffffff']
+                });
+            }, 550);
+        }
+
+        // Control de música interactivo (Play/Pause)
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const visualizer = document.getElementById('audio-visualizer');
+            const icon = document.getElementById('music-control-icon');
+            
+            if (audio.paused) {
+                audio.play();
+                visualizer.classList.remove('paused-animation');
+                icon.className = 'fa-solid fa-music text-white animate-pulse';
+            } else {
+                audio.pause();
+                visualizer.classList.add('paused-animation');
+                icon.className = 'fa-solid fa-volume-xmark text-red-300';
+            }
+        }
+    </script>
+</body>
+</html>
