@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Mis 3 añitos, Rodrigo! 🚜🌾</title>
+    <title>Mis 3 años Rodrigo Edmundo 🚜</title>
+    
+    <!-- Configuración para WhatsApp, Facebook y otras redes sociales (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mis 3 años Rodrigo Edmundo 🚜">
+    <meta property="og:description" content="¡Estás cordialmente invitado a celebrar mis 3 añitos en mi granja de ensueño! Pulsa aquí para ver los detalles.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/WhatsApp%20Image%202026-07-03%20at%205.30.51%20PM.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Configuración para Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mis 3 años Rodrigo Edmundo 🚜">
+    <meta name="twitter:description" content="¡Estás cordialmente invitado a celebrar mis 3 añitos en mi granja de ensueño!">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/WhatsApp%20Image%202026-07-03%20at%205.30.51%20PM.jpeg">
+
     <!-- Tailwind CSS para diseño fluido y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome para íconos infantiles y campestres -->
@@ -57,16 +72,6 @@
             pointer-events: none;
             z-index: 10;
             animation: floatUp 12s infinite linear;
-        }
-
-        /* Pulsación sutil para las guías de scroll */
-        @keyframes bounceDown {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
-        }
-        .scroll-hint {
-            animation: bounceDown 2.2s infinite;
         }
 
         .bar {
@@ -130,8 +135,8 @@
                 <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Añitos</span>
             </div>
 
-            <div class="text-3xl font-extrabold text-blue-600 tracking-wide mb-6">
-                RODRIGO
+            <div class="text-3xl font-extrabold text-blue-600 tracking-wide mb-6 leading-tight">
+                RODRIGO<br>EDMUNDO
             </div>
 
             <!-- Botón de apertura estilo madera celeste -->
@@ -151,14 +156,6 @@
         <section class="snap-section" style="background-image: url('https://raw.githubusercontent.com/regina1503/Mis-3-a-os-Rodrigo-/main/invi%201.jpeg');">
             <!-- Capa de iluminación suave de cielo para legibilidad -->
             <div class="absolute inset-0 bg-gradient-to-b from-sky-100/20 via-transparent to-transparent pointer-events-none"></div>
-
-            <!-- Indicador para deslizar abajo -->
-            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center text-white scroll-hint z-30 flex flex-col items-center pointer-events-none">
-                <span class="text-xs font-bold tracking-wider bg-sky-400/90 text-white px-4 py-2 rounded-full border border-sky-200/30 mb-1 shadow-md">
-                    Desliza para pasear 🔽
-                </span>
-                <i class="fa-solid fa-chevron-down text-base text-sky-400"></i>
-            </div>
             
             <!-- Audio oculto con música agradable de flauta / infantil country sutil -->
             <audio id="bg-music" loop preload="auto">
@@ -179,8 +176,8 @@
 
             <div class="absolute inset-0 z-30 flex flex-col items-center pointer-events-none">
                 
-                <!-- BOTÓN 1: VER UBICACIÓN (Elevado de 32% a 15% y centrado de forma segura) -->
-                <div class="absolute w-full max-w-xs px-6 pointer-events-auto" style="top: 15%; left: 50%; transform: translateX(-50%);">
+                <!-- BOTÓN 1: VER UBICACIÓN (Posicionado óptimamente a un 30% de altura) -->
+                <div class="absolute w-full max-w-xs px-6 pointer-events-auto" style="top: 30%; left: 50%; transform: translateX(-50%);">
                     <a href="https://maps.app.goo.gl/gPCQ4fAAQepzSCsB9" target="_blank" 
                        class="w-full bg-gradient-to-r from-sky-500 to-blue-400 text-white text-center py-4 rounded-2xl font-bold text-sm shadow-lg hover:from-sky-600 hover:to-blue-500 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 border-b-4 border-sky-600">
                         <i class="fa-solid fa-map-location-dot text-lg text-white animate-pulse"></i>
@@ -188,7 +185,7 @@
                     </a>
                 </div>
                 
-                <!-- BOTÓN 2: CONFIRMAR ASISTENCIA (Elevado al 50%, desplazado a la derecha y optimizado en ancho para no salirse) -->
+                <!-- BOTÓN 2: CONFIRMAR ASISTENCIA (Posicionado a un 50% de altura y desplazado un 20% a la derecha) -->
                 <div class="absolute w-full max-w-[220px] px-2 pointer-events-auto" style="top: 50%; left: 70%; transform: translateX(-50%);">
                     <a href="https://w.app/wxsdqo" target="_blank" 
                        class="w-full bg-gradient-to-r from-blue-300 to-sky-400 text-white text-center py-3.5 rounded-2xl font-bold text-xs shadow-lg hover:from-blue-400 hover:to-sky-500 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 border-b-4 border-blue-400">
